@@ -9,11 +9,25 @@ import UIKit
 
 class ViewController: UIViewController {
 
+	@IBOutlet weak var rocketImage: UIImageView!
+	
+	var rocketIndex = 0
+	let numberOfRockets = 5
+	
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		// Do any additional setup after loading the view.
+		rocketImage.image = UIImage(named: "rocket0")
 	}
 
+	@IBAction func rocketTapped(_ sender: UITapGestureRecognizer) {
+		rocketIndex += 1
 
+		rocketImage.image = UIImage(named: "rocket\(rocketIndex)")
+		
+		if rocketIndex == numberOfRockets - 1 {
+			rocketIndex = 0
+		}
+	}
+	
 }
 
