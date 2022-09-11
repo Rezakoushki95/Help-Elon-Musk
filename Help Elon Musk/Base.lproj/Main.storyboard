@@ -27,15 +27,30 @@
                                     <outletCollection property="gestureRecognizers" destination="uSk-BA-QWp" appends="YES" id="4mT-Jb-4aB"/>
                                 </connections>
                             </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YUL-zx-vjO">
+                                <rect key="frame" x="240" y="616" width="120" height="31"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="31" id="AFt-G9-gpR"/>
+                                    <constraint firstAttribute="width" constant="120" id="AJc-AD-oVe"/>
+                                </constraints>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain"/>
+                                <connections>
+                                    <action selector="launchOrLandPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="4Lr-fk-dmJ"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="YUL-zx-vjO" secondAttribute="bottom" constant="20" id="0iZ-2g-Ppa"/>
                             <constraint firstItem="Wu6-St-3nq" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="1cN-ir-iIv"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="Wu6-St-3nq" secondAttribute="bottom" constant="20" id="azi-S9-pdl"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="YUL-zx-vjO" secondAttribute="trailing" constant="15" id="sqm-gc-eKF"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="launchOrLandButton" destination="YUL-zx-vjO" id="B2x-WS-5XB"/>
                         <outlet property="rocketImage" destination="Wu6-St-3nq" id="qmK-Tk-bhn"/>
                     </connections>
                 </viewController>
