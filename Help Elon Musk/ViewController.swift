@@ -6,11 +6,14 @@
 //
 
 import UIKit
+import AVFoundation
 
 class ViewController: UIViewController {
 
 	@IBOutlet weak var rocketImage: UIImageView!
 	@IBOutlet weak var launchOrLandButton: UIButton!
+	
+	var audioPlayer = AVAudioPlayer()
 	
 	var rocketIndex = 0
 	let numberOfRockets = 5
@@ -23,16 +26,35 @@ class ViewController: UIViewController {
 
 	}
 
+	func playSound(name: String, audioPlayer: inout AVAudioPlayer) {
+		if let sound = NSDataAsset(name: name) {
+			do {
+				try audioPlayer = AVAudioPlayer(data: sound.data)
+				audioPlayer.play()
+			} catch {
+				print("Error: \(error.localizedDescription). Could not initialize AVAudioPlayer object")
+			}
+		} else {
+			print("ERROR: Could not read data from file")
+		}
+	}
+	
 	@IBAction func launchOrLandPressed(_ sender: UIButton) {
+		playSound(name: "rocketsound", audioPlayer: &audioPlayer)
 		if launchOrLandButton.currentTitle == "Blast Off!" {
 			UIView.animate(withDuration: 3.0, delay: 0.0, options: []) {
 				self.rocketImage.transform = CGAffineTransform(translationX: 0, y: -(self.rocketImage.frame.origin.y + self.rocketImage.frame.size.height))
+			} completion: { _ in
+				self.audioPlayer.stop()
 			}
 			launchOrLandButton.setTitle("Return", for: .normal)
 		} else {
 			UIView.animate(withDuration: 3.0, delay: 0.0, options: []) {
 				self.rocketImage.transform = CGAffineTransform.identity
+			} completion: { _ in
+				self.audioPlayer.stop()
 			}
+
 			launchOrLandButton.setTitle("Blast Off!", for: .normal)
 		}
 	}
